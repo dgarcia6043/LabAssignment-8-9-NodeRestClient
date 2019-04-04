@@ -6,7 +6,7 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class HttpService {
-  apiURL = ''; // http://localhost:3002/api/v1
+  apiURL = ''; // http://localhost:3002/api/v1/
   constructor(
     private http: Http
   ) {
@@ -31,12 +31,18 @@ export class HttpService {
     return resp.json();
   }
 
-  put() {
-
+  // put('car/id/1', { make: 'Toyota', model: 'Celica});
+  async put(path: string, payload: any) {
+    const resp = await this.http.put(this.apiURL + path, payload, this.headers).toPromise();
+    console.log('from http service put()', resp.json());
+    return resp.json();
   }
 
-  delete() {
-
+  // delete('car/id/1');
+  async delete(path: string) {
+    const resp = await this.http.delete(this.apiURL + path, this.headers).toPromise();
+    console.log('from http service delete()', resp.json());
+    return resp.json();
   }
 
   get headers() {
