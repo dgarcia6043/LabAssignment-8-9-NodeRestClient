@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     const token = localStorage.getItem('id_token');
-    console.log('from login ngOnInit token: ', token);
     if (token == null) {
       this.loggedIn = false;
       this.router.navigate(['login']);
